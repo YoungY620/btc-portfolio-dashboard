@@ -1,0 +1,388 @@
+:root {
+  color-scheme: dark;
+  --bg: #06070a;
+  --panel: #0b0f14;
+  --panel-2: #101722;
+  --text: #dce6df;
+  --muted: #788493;
+  --line: #25303b;
+  --line-hot: #6ea87a;
+  --green: #8fca86;
+  --cyan: #7fb5c5;
+  --purple: #9a84bd;
+  --red: #c77a83;
+  --amber: #c8aa6a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    linear-gradient(rgba(143, 202, 134, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127, 181, 197, 0.03) 1px, transparent 1px),
+    linear-gradient(135deg, #06070a 0%, #090b12 52%, #09080d 100%);
+  background-size: 18px 18px, 18px 18px, 100% 100%;
+  color: var(--text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.02) 0,
+    rgba(255, 255, 255, 0.02) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  mix-blend-mode: overlay;
+}
+
+.page {
+  width: min(1180px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 24px 0 34px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.mark {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  image-rendering: pixelated;
+}
+
+.mark span {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--green);
+  box-shadow: 0 0 8px rgba(143, 202, 134, 0.35);
+}
+
+.mark span:nth-child(1) {
+  left: 8px;
+  top: 4px;
+}
+
+.mark span:nth-child(2) {
+  left: 18px;
+  top: 14px;
+  width: 20px;
+  height: 20px;
+  background: #b8d9a6;
+}
+
+.mark span:nth-child(3) {
+  left: 4px;
+  top: 24px;
+  background: var(--cyan);
+  box-shadow: 0 0 8px rgba(127, 181, 197, 0.35);
+}
+
+.mark span:nth-child(4) {
+  left: 28px;
+  top: 34px;
+  background: var(--purple);
+  box-shadow: 0 0 8px rgba(154, 132, 189, 0.32);
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  color: #edf3ef;
+  font-size: clamp(28px, 3.4vw, 42px);
+  line-height: 0.95;
+  letter-spacing: 0;
+  text-shadow:
+    2px 0 0 rgba(127, 181, 197, 0.18),
+    -2px 0 0 rgba(199, 122, 131, 0.14);
+}
+
+h2 {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 2px 8px;
+  color: var(--green);
+  background: rgba(143, 202, 134, 0.08);
+  border-left: 4px solid rgba(143, 202, 134, 0.75);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.topbar p,
+.label,
+small {
+  color: var(--muted);
+}
+
+.topbar p {
+  margin-top: 7px;
+  font-size: 13px;
+}
+
+.action {
+  min-width: 136px;
+  flex: 0 0 auto;
+  padding: 12px 14px;
+  color: var(--text);
+  text-align: center;
+  background: #080b10;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow:
+    inset 0 -3px 0 rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(0, 0, 0, 0.7);
+  font-weight: 800;
+}
+
+.action.buy_btc,
+.command.buy_btc strong {
+  color: var(--green);
+}
+
+.action.sell_btc,
+.command.sell_btc strong {
+  color: var(--red);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 1.05fr 1.25fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.heroCard,
+.panel {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(16, 23, 34, 0.94), rgba(8, 11, 16, 0.96));
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025),
+    0 18px 36px rgba(0, 0, 0, 0.28);
+}
+
+.heroCard::before,
+.panel::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  content: "";
+  background: linear-gradient(90deg, rgba(143, 202, 134, 0.8), rgba(127, 181, 197, 0.65), rgba(154, 132, 189, 0.65));
+}
+
+.heroCard {
+  min-height: 132px;
+  padding: 16px;
+}
+
+.heroCard.target::before {
+  background: rgba(143, 202, 134, 0.82);
+}
+
+.heroCard.current::before {
+  background: rgba(127, 181, 197, 0.78);
+}
+
+.heroCard.command::before {
+  background: rgba(154, 132, 189, 0.78);
+}
+
+.label {
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.hero strong {
+  display: block;
+  margin-top: 11px;
+  overflow-wrap: anywhere;
+  font-size: clamp(30px, 3.5vw, 46px);
+  line-height: 0.95;
+}
+
+.hero small {
+  display: block;
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.target strong {
+  color: #a5d99a;
+}
+
+.current strong {
+  color: #95c6d2;
+}
+
+.command strong {
+  color: #d0b778;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.05;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.panel {
+  padding: 18px;
+}
+
+.metricList {
+  display: grid;
+  gap: 0;
+}
+
+.metric,
+.row {
+  display: grid;
+  align-items: start;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(37, 48, 59, 0.9);
+}
+
+.metric:first-child {
+  border-top: 0;
+}
+
+.metric {
+  grid-template-columns: minmax(240px, 0.95fr) minmax(260px, 1.05fr);
+}
+
+.metric span {
+  display: block;
+  color: var(--text);
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.metric small {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.metric b {
+  min-width: 0;
+  color: #f0f4ef;
+  text-align: right;
+  overflow-wrap: anywhere;
+  font-size: 18px;
+  line-height: 1.35;
+  padding-top: 1px;
+}
+
+.table {
+  overflow-x: auto;
+}
+
+.row {
+  grid-template-columns: 1.25fr 1fr 1fr 1fr;
+  min-width: 760px;
+}
+
+.row.head {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.ok {
+  color: var(--green);
+}
+
+.warn {
+  color: var(--amber);
+}
+
+.warnings {
+  margin-top: 12px;
+  padding: 14px 18px;
+  color: var(--amber);
+  background: #191208;
+  border: 1px solid rgba(255, 209, 102, 0.5);
+  border-radius: 6px;
+}
+
+.warnings p + p {
+  margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroCard {
+    min-height: 142px;
+  }
+}
+
+@media (max-width: 620px) {
+  .page {
+    width: min(100vw - 20px, 1180px);
+    padding-top: 16px;
+  }
+
+  .topbar {
+    display: grid;
+    align-items: stretch;
+  }
+
+  .action {
+    width: 100%;
+  }
+
+  .metric {
+    grid-template-columns: 1fr;
+  }
+
+  .metric b {
+    text-align: left;
+  }
+}
