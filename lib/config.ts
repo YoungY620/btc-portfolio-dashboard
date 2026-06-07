@@ -1,3 +1,5 @@
+import fs from "fs";
+import path from "path";
 import dashboardConfig from "../config/dashboard.json";
 
 type ManualBalance = {
@@ -19,17 +21,27 @@ export type AppConfig = {
   manualBalances: ManualBalance[];
 };
 
+type DashboardConfig = typeof dashboardConfig;
+
+function localConfig(): Partial<DashboardConfig> {
+  const file = path.join(process.cwd(), "config/dashboard.local.json");
+  if (!fs.existsSync(file)) return {};
+  return JSON.parse(fs.readFileSync(file, "utf8")) as Partial<DashboardConfig>;
+}
+
 export function loadConfig(): AppConfig {
+  const local = localConfig();
   return {
-    tradingPair: dashboardConfig.tradingPair,
-    cycleLookbackDays: dashboardConfig.strategy.cycleLookbackDays,
-    slowMaDays: dashboardConfig.strategy.slowMaDays,
-    rebalanceThresholdFraction: dashboardConfig.strategy.rebalanceThresholdPct / 100,
-    binanceBaseUrl: dashboardConfig.exchanges.binance.baseUrl,
-    binanceMarketDataBaseUrl: dashboardConfig.exchanges.binance.marketDataBaseUrl,
-    okxBaseUrl: dashboardConfig.exchanges.okx.baseUrl,
-    okxProjectId: dashboardConfig.exchanges.okx.projectId,
-    btcWalletAddresses: dashboardConfig.btcWalletAddresses,
-    manualBalances: dashboardConfig.manualBalances,
+    tradingPair: local.tradingPair || dashboardConfig.tradingPair,
+    cycleLookbackDays: local.strategy?.cycleLookbackDays || dashboardConfig.strategy.cycleLookbackDays,
+    slowMaDays: local.strategy?.slowMaDays || dashboardConfig.strategy.slowMaDays,
+    rebalanceThresholdFraction: (local.strategy?.rebalanceThresholdPct || dashboardConfig.strategy.rebalanceThresholdPct) / 100,
+    binanceBaseUrl: local.exchanges?.binance?.baseUrl || dashboardConfig.exchanges.binance.baseUrl,
+    binanceMarketDataBaseUrl:
+      local.exchanges?.binance?.marketDataBaseUrl || dashboardConfig.exchanges.binance.marketDataBaseUrl,
+    okxBaseUrl: local.exchanges?.okx?.baseUrl || dashboardConfig.exchanges.okx.baseUrl,
+    okxProjectId: local.exchanges?.okx?.projectId || dashboardConfig.exchanges.okx.projectId,
+    btcWalletAddresses: local.btcWalletAddresses || dashboardConfig.btcWalletAddresses,
+    manualBalances: local.manualBalances || dashboardConfig.manualBalances,
   };
 }

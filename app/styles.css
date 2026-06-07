@@ -321,6 +321,53 @@ small {
   overflow-x: auto;
 }
 
+.manualPanel {
+  margin-bottom: 12px;
+}
+
+.manualNote {
+  max-width: 860px;
+  margin-bottom: 14px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.manualGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.manualInput {
+  display: grid;
+  gap: 7px;
+}
+
+.manualInput span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.manualInput input {
+  width: 100%;
+  min-width: 0;
+  padding: 11px 12px;
+  color: var(--text);
+  background: #070a0f;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font: inherit;
+  outline: none;
+}
+
+.manualInput input:focus {
+  border-color: rgba(143, 202, 134, 0.8);
+  box-shadow: 0 0 0 2px rgba(143, 202, 134, 0.08);
+}
+
 .row {
   grid-template-columns: 1.25fr 1fr 1fr 1fr;
   min-width: 760px;
@@ -384,5 +431,9 @@ small {
 
   .metric b {
     text-align: left;
+  }
+
+  .manualGrid {
+    grid-template-columns: 1fr;
   }
 }

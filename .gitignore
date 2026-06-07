@@ -4,5 +4,6 @@ out
 .env
 .env.local
 .env*.local
+config/dashboard.local.json
 *.log
 tsconfig.tsbuildinfo

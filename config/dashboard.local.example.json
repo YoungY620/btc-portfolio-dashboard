@@ -1,0 +1,9 @@
+{
+  "manualBalances": [
+    {
+      "source": "binance_manual",
+      "btc": 0,
+      "usdc": 0
+    }
+  ]
+}

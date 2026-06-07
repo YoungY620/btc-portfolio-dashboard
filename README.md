@@ -13,6 +13,7 @@ No futures. No leverage. No short.
 ```
 
 The dashboard computes the target BTC allocation, aggregates balances, and shows how much BTC to buy or sell to reach the target.
+Binance balances are read from API first. If Binance API is blocked or unavailable, the browser shows a manual fallback form and stores the fallback balance in localStorage only.
 
 ## Config
 
@@ -44,6 +45,7 @@ OKX_API_PASSPHRASE=
 ```
 
 Only server-side code reads exchange secrets. The browser receives only computed balances and the rebalance plan.
+The browser may store manual Binance fallback balances in localStorage. Do not store API keys in the browser.
 
 ## Local Run
 
