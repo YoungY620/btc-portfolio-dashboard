@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { aggregatePortfolio, buildRebalancePlan } from "../lib/portfolio";
 import type { BalanceSource, DashboardSnapshot, RebalancePlan } from "../lib/types";
 
@@ -199,9 +200,12 @@ export function DashboardClient({ snapshot }: { snapshot: DashboardSnapshot }) {
             <p>{snapshot.market.symbol} · {new Date(snapshot.generatedAt).toLocaleString("zh-CN")}</p>
           </div>
         </div>
-        <div className={`action ${dashboard.rebalance.action.toLowerCase()}`}>
-          {actionText(dashboard.rebalance.action)}
-        </div>
+        <nav className="nav">
+          <Link href="/about" className="navLink">策略说明</Link>
+          <div className={`action ${dashboard.rebalance.action.toLowerCase()}`}>
+            {actionText(dashboard.rebalance.action)}
+          </div>
+        </nav>
       </header>
 
       <section className="hero">

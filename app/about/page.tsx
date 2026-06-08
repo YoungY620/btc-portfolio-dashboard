@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BacktestSection } from "../backtest-section";
 
 export const metadata: Metadata = {
   title: "策略说明 — BTC Portfolio Dashboard",
@@ -74,6 +75,8 @@ export default function AboutPage() {
           </div>
         </article>
       </section>
+
+      <BacktestSection />
 
       <section className="grid">
         <article className="panel">
