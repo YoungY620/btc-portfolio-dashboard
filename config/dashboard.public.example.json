@@ -5,24 +5,5 @@
     "slowMaDays": 200,
     "rebalanceThresholdPct": 2
   },
-  "exchanges": {
-    "binance": {
-      "baseUrl": "https://api.binance.com",
-      "marketDataBaseUrl": "https://data-api.binance.vision"
-    },
-    "okx": {
-      "baseUrl": "https://www.okx.com",
-      "projectId": ""
-    }
-  },
-  "btcWalletAddresses": [
-    "bc1q_example_public_btc_address"
-  ],
-  "manualBalances": [
-    {
-      "source": "manual_example",
-      "btc": 0.01,
-      "usdc": 100
-    }
-  ]
+  "marketDataBaseUrl": "https://data-api.binance.vision"
 }

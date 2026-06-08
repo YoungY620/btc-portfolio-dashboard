@@ -1,9 +1,3 @@
 {
-  "manualBalances": [
-    {
-      "source": "binance_manual",
-      "btc": 0,
-      "usdc": 0
-    }
-  ]
+  "marketDataBaseUrl": "https://data-api.binance.vision"
 }

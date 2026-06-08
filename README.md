@@ -13,7 +13,13 @@ No futures. No leverage. No short.
 ```
 
 The dashboard computes the target BTC allocation, aggregates balances, and shows how much BTC to buy or sell to reach the target.
-Binance balances are read from API first. If Binance API is blocked or unavailable, the browser shows a manual fallback form and stores the fallback balance in localStorage only.
+Asset balances are entered manually in the browser. The dashboard has three manual sources:
+
+- Binance: BTC, USDC, USDT.
+- OKX: BTC, USDC, USDT.
+- ETH wallet: BTC, USDC, USDT.
+
+Each source is stored in browser localStorage and has a one-click rebalance cache update button.
 
 ## Config
 
@@ -28,24 +34,13 @@ Use [config/dashboard.public.example.json](/Users/patrick/Developer/mev-mono/btc
     "slowMaDays": 200,
     "rebalanceThresholdPct": 2
   },
-  "btcWalletAddresses": [],
-  "manualBalances": []
+  "marketDataBaseUrl": "https://data-api.binance.vision"
 }
 ```
 
-## Vercel Environment Variables
+## Browser Storage
 
-```text
-BINANCE_API_KEY=
-BINANCE_API_SECRET=
-
-OKX_API_KEY=
-OKX_API_SECRET=
-OKX_API_PASSPHRASE=
-```
-
-Only server-side code reads exchange secrets. The browser receives only computed balances and the rebalance plan.
-The browser may store manual Binance fallback balances in localStorage. Do not store API keys in the browser.
+No Binance or OKX account API keys are used. Manual balances are stored only in the current browser's localStorage.
 
 ## Local Run
 
